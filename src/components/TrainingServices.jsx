@@ -6,13 +6,31 @@ import {
   CheckCircle2,
   GraduationCap,
   Layers,
-  MapPin,
   Sparkles,
+  Users,
   Target,
   UserRound,
   Wrench,
 } from 'lucide-react'
-import { TRAINING_HERO_IMAGE, TRAINING_SERVICES, WHATSAPP } from '../constants/content'
+import { TRAINING_SERVICES, WHATSAPP } from '../constants/content'
+
+const TRAINING_HIGHLIGHTS = [
+  {
+    icon: GraduationCap,
+    label: 'Classroom & weekend batches',
+    desc: 'Mentor-led sessions at KPHB campus',
+  },
+  {
+    icon: Wrench,
+    label: 'Live project labs',
+    desc: 'Portfolio-ready GenAI & data work',
+  },
+  {
+    icon: Users,
+    label: 'Placement support',
+    desc: 'Mock interviews until you get hired',
+  },
+]
 
 const SERVICE_ICONS = {
   classroom: GraduationCap,
@@ -52,59 +70,52 @@ export default function TrainingServices() {
       <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-gh-purple/5 blur-[130px]" />
 
       <div className="relative z-10 mx-auto max-w-[95rem] px-6">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-gh-green/15 bg-gh-green/5 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-gh-green">
+        <div className="training-intro">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-gh-green/15 bg-gh-green/5 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-gh-green">
               <Sparkles className="h-3.5 w-3.5" />
               Our Training Services
             </span>
-            <h2 className="mt-4 font-rubik text-2xl font-extrabold leading-tight tracking-tight text-slate-800 sm:text-4xl">
-              Everything to go from{' '}
+            <h2 className="font-rubik text-2xl font-extrabold leading-tight tracking-tight text-slate-800 sm:text-4xl">
+              From{' '}
               <span className="bg-gradient-to-r from-gh-blue to-gh-purple bg-clip-text text-transparent">
                 learner to placed
               </span>
             </h2>
-            <p className="mt-4 text-sm font-medium leading-relaxed text-gh-muted sm:text-base">
-              Classroom training, live project labs, GenAI workshops, interview prep, and placement support — all at
-              KPHB, Hyderabad.
+            <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-gh-muted sm:text-base">
+              Classroom training, live project labs, GenAI workshops, and end-to-end placement support at KPHB,
+              Hyderabad.
             </p>
-            <ul className="mt-6 space-y-2.5">
-              {['Live mentor-led sessions', 'Real portfolio projects', 'Placement until you get hired'].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-hero mt-8 inline-flex gap-2">
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {TRAINING_HIGHLIGHTS.map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.label} className="training-highlight-card">
+                  <span className="training-highlight-icon">
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </span>
+                  <p className="mt-3 font-rubik text-sm font-extrabold text-slate-800">{item.label}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-gh-muted">{item.desc}</p>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-hero inline-flex gap-2">
               Talk to admissions
               <ArrowRight className="h-4 w-4" />
             </a>
-          </div>
-
-          <div className="training-hero-visual">
-            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-tr from-gh-blue/15 via-gh-purple/10 to-cyber-pink/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-sm">
-              <img
-                src={TRAINING_HERO_IMAGE.src}
-                alt={TRAINING_HERO_IMAGE.alt}
-                className="h-56 w-full object-cover sm:h-64 lg:h-72"
-                loading="lazy"
-              />
-              <div className="p-4">
-                <div className="flex flex-wrap gap-2">
-                  <span className="training-hero-pill">
-                    <MapPin className="h-3.5 w-3.5" />
-                    KPHB, Hyderabad
-                  </span>
-                  <span className="training-hero-pill">June batch open</span>
-                </div>
-              </div>
-            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+              <CheckCircle2 className="h-3.5 w-3.5" />
+              June batch open
+            </span>
           </div>
         </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {TRAINING_SERVICES.map((service) => {
             const Icon = SERVICE_ICONS[service.icon] || GraduationCap
 

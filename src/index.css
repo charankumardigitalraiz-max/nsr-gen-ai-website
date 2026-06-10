@@ -1002,11 +1002,11 @@
   }
 
   .btn-course-primary {
-    @apply flex h-auto min-h-9 cursor-pointer items-center justify-center gap-0.5 rounded-lg border border-gh-purple bg-gh-purple px-1.5 py-2 text-center text-[9px] font-semibold leading-tight text-white transition-all duration-200 hover:border-gh-blue hover:bg-gh-blue active:scale-[0.98] sm:gap-1 sm:px-2.5 sm:text-[11px] xl:px-1.5 xl:text-[9px];
+    @apply flex h-auto min-h-9 cursor-pointer items-center justify-center gap-0.5 rounded-lg border border-gh-purple bg-gh-purple px-1.5 py-2 text-center text-[12px] font-semibold leading-tight text-white transition-all duration-200 hover:border-gh-blue hover:bg-gh-blue active:scale-[0.98] sm:gap-1 sm:px-2.5 sm:text-[11px] xl:px-1.5 xl:text-[11px];
   }
 
   .btn-course-outline {
-    @apply flex h-auto min-h-9 cursor-pointer items-center justify-center gap-0.5 rounded-lg border border-slate-300 bg-white px-1.5 py-2 text-center text-[9px] font-semibold leading-tight text-slate-700 transition-all duration-200 hover:border-gh-purple/50 hover:bg-slate-50 hover:text-gh-purple active:scale-[0.98] sm:gap-1 sm:px-2.5 sm:text-[11px] xl:px-1.5 xl:text-[9px];
+    @apply flex h-auto min-h-9 cursor-pointer items-center justify-center gap-0.5 rounded-lg border border-slate-300 bg-white px-1.5 py-2 text-center text-[11px] font-semibold leading-tight text-slate-700 transition-all duration-200 hover:border-gh-purple/50 hover:bg-slate-50 hover:text-gh-purple active:scale-[0.98] sm:gap-1 sm:px-2.5 sm:text-[11px] xl:px-1.5 xl:text-[11px];
   }
 
   .cyber-card::before {
@@ -1019,12 +1019,16 @@
   }
 
   /* Training services */
-  .training-hero-visual {
-    @apply relative flex items-center justify-center;
+  .training-intro {
+    @apply mb-14;
   }
 
-  .training-hero-pill {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600;
+  .training-highlight-card {
+    @apply rounded-xl border border-slate-200/70 bg-white p-5 text-center transition duration-300 hover:border-gh-purple/25 hover:shadow-sm;
+  }
+
+  .training-highlight-icon {
+    @apply mx-auto inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gh-blue/20 bg-gh-blue/8 text-gh-blue;
   }
 
   .training-service-tag {
@@ -1039,6 +1043,13 @@
   .site-footer-glow {
     @apply pointer-events-none absolute inset-x-0 top-0 h-px;
     background: linear-gradient(90deg, transparent, #0284c7, #6366f1, #ec4899, transparent);
+  }
+
+  .site-footer-mesh {
+    @apply pointer-events-none absolute inset-0 opacity-40;
+    background-image: radial-gradient(rgb(99 102 241 / 0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
   }
 
   .footer-brand-icon {
@@ -1064,7 +1075,32 @@
   }
 
   .footer-link {
-    @apply text-sm text-slate-400 transition-colors duration-200 hover:text-white;
+    @apply inline-block text-sm text-slate-400 transition duration-200 hover:translate-x-0.5 hover:text-white;
+  }
+
+  .footer-col {
+    @apply lg:border-l lg:border-white/10 lg:pl-8;
+  }
+
+  .footer-programs-grid {
+    @apply grid gap-x-4 gap-y-0 sm:grid-cols-2;
+  }
+
+  .footer-stat {
+    @apply flex flex-col rounded-lg border border-white/10 bg-white/5 px-3 py-2;
+  }
+
+  .footer-stat-value {
+    @apply text-sm font-extrabold text-white;
+  }
+
+  .footer-stat-label {
+    @apply text-[10px] font-semibold uppercase tracking-wide text-slate-500;
+  }
+
+  .footer-contact-panel {
+    @apply rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-5;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   }
 
   .footer-contact-icon {
@@ -1073,6 +1109,66 @@
 
   .footer-cta {
     @apply rounded-lg border border-gh-purple/40 bg-gh-purple/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-violet-200 transition hover:border-gh-purple/60 hover:bg-gh-purple/25;
+  }
+
+  .footer-batch-badge {
+    @apply rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400;
+  }
+
+  /* Floating WhatsApp */
+  .wa-float {
+    @apply fixed bottom-5 right-5 z-50 flex items-center gap-0 overflow-hidden rounded-full border border-white/25 text-white transition-all duration-300 sm:bottom-6 sm:right-6;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    box-shadow: 0 8px 28px rgb(18 140 126 / 0.35);
+  }
+
+  .wa-float:hover {
+    @apply scale-[1.03];
+    box-shadow: 0 12px 32px rgb(18 140 126 / 0.45);
+  }
+
+  .wa-float:active {
+    @apply scale-[0.98];
+  }
+
+  .wa-float-ring {
+    @apply pointer-events-none absolute -inset-1 rounded-full border border-emerald-300/50 opacity-70;
+    animation: wa-float-pulse 2.5s ease-in-out infinite;
+  }
+
+  .wa-float-icon {
+    @apply flex h-14 w-14 shrink-0 items-center justify-center;
+  }
+
+  .wa-float-label {
+    @apply max-w-0 overflow-hidden whitespace-nowrap pr-0 text-sm font-bold tracking-wide opacity-0 transition-all duration-300;
+  }
+
+  .wa-float:hover .wa-float-label,
+  .wa-float:focus-visible .wa-float-label {
+    @apply max-w-[8.5rem] pr-5 opacity-100;
+  }
+
+  @media (min-width: 640px) {
+    .wa-float {
+      @apply gap-0 pr-0;
+    }
+
+    .wa-float-label {
+      @apply max-w-[8.5rem] pr-5 opacity-100;
+    }
+  }
+
+  @keyframes wa-float-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.2;
+    }
   }
 
   .blog-category-pill {

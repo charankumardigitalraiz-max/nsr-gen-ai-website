@@ -89,14 +89,14 @@ export default function Courses() {
                     }}
                   >
                     <span>Enroll Now</span>
-                    <ArrowRight className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" />
+                    {/* <ArrowRight className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" /> */}
                   </button>
                   <a
                     href={`#/courses/${course.slug}`}
                     className="btn-course-outline"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <span>View Details</span>
+                    <span>Details</span>
                   </a>
                 </div>
               </div>

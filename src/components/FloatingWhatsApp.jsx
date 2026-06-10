@@ -7,10 +7,14 @@ export default function FloatingWhatsApp() {
       href={WHATSAPP}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald text-cream shadow-lg shadow-emerald/30 transition hover:scale-110"
+      className="wa-float group"
       aria-label="Chat on WhatsApp"
     >
-      <WhatsAppIcon className="h-7 w-7" />
+      <span className="wa-float-ring" aria-hidden="true" />
+      <span className="wa-float-icon">
+        <WhatsAppIcon className="h-6 w-6" />
+      </span>
+      <span className="wa-float-label">Chat with us</span>
     </a>
   )
 }

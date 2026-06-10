@@ -57,9 +57,8 @@ function App() {
         return (
           <>
             <Hero />
-            <HiringPartners />
             <Courses />
-
+            <HiringPartners />
             <Roadmap />
             <SuccessStories />
             <TrainingServices />
