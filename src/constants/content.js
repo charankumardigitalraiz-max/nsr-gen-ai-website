@@ -6,15 +6,14 @@ export const WHATSAPP = `https://wa.me/91${PHONE}?text=Hi%20NSR%20Academy%2C%20I
 
 export const WHATSAPP_DEMO = `https://wa.me/91${PHONE}?text=Hi%20NSR%20Academy%2C%20I%20would%20like%20to%20book%20a%20free%20GenAI%20demo%20session.`;
 
-export const NAV_LINKS = [
-  { label: "Home", href: "#/" },
-  { label: "Courses", href: "#/courses" },
-  { label: "Services", href: "#/training" },
-  { label: "Blogs", href: "#/blogs" },
-  { label: "Roadmap", href: "#/roadmap" },
-  { label: "Placements", href: "#/placements" },
-  { label: "About", href: "#/about" },
-];
+export {
+  NAV_LINKS,
+  NAVBAR_LINKS,
+  FOOTER_LINKS,
+  ROUTES,
+  courseDetailPath,
+  blogDetailPath,
+} from './routes'
 
 /** Training section hero — stock photo (Unsplash) */
 export const TRAINING_HERO_IMAGE = {
@@ -205,7 +204,7 @@ export const DOUBTS = [
   },
 ];
 
-export { COURSES } from './courseDetails.js';
+export { COURSES } from "./courseDetails.js";
 
 export const ROADMAP = [
   {
@@ -241,17 +240,45 @@ export const ROADMAP = [
 ];
 
 export const AI_PILLARS = [
-  { label: "Coding", icon: "</>", desc: "Build AI-powered software products" },
+  {
+    label: "Coding",
+    icon: "</>",
+    title: "AI Software Development",
+    desc: "Write production Python, build APIs, and ship full-stack apps wired to GenAI models.",
+    topics: ["Python", "FastAPI", "LangChain"],
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&h=426&q=80",
+    imageAlt: "Developer laptop with code editor open",
+  },
   {
     label: "Text",
     icon: "📝",
-    desc: "Master prompt design & agent architectures",
+    title: "LLMs & Prompt Engineering",
+    desc: "Design prompts, fine-tune models, and build RAG systems that answer from real data.",
+    topics: ["GPT", "RAG", "Embeddings"],
+    image:
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=640&h=426&q=80",
+    imageAlt: "Digital data streams representing language models and NLP",
   },
-  { label: "Art", icon: "🎨", desc: "Generate high-fidelity visual assets" },
+  {
+    label: "Art",
+    icon: "🎨",
+    title: "Generative Visual AI",
+    desc: "Create marketing visuals, design assets, and image workflows with modern GenAI tools.",
+    topics: ["Image Gen", "Midjourney", "DALL·E"],
+    image:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=640&h=426&q=80",
+    imageAlt: "Creative professional working on digital design",
+  },
   {
     label: "Agents",
     icon: "🤖",
-    desc: "Build autonomous AI agents and workflows",
+    title: "Autonomous AI Agents",
+    desc: "Orchestrate multi-step agents, tool calling, and automated workflows for business tasks.",
+    topics: ["CrewAI", "Agents", "Automation"],
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=640&h=426&q=80",
+    imageAlt: "Analytics dashboard showing automated AI agent workflows",
   },
 ];
 
@@ -296,30 +323,54 @@ export const SUCCESSFUL_STUDENTS = [
   {
     name: "K. Sai Kiran",
     role: "GenAI Developer",
+    courseSlug: "full-stack-ai-ml",
     company: "Accenture",
     package: "12 LPA",
     initial: "KS",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=480&h=320&q=80",
+    imageAlt: "K. Sai Kiran — GenAI developer graduate",
+    tags: ["Python", "LLMs", "LangChain", "CrewAI"],
+    quote: "NSR gave me the technical edge in autonomous agents.",
   },
   {
     name: "M. Shravya",
     role: "Data Scientist",
+    courseSlug: "data-science-with-genai",
     company: "TCS",
     package: "9.5 LPA",
     initial: "MS",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=480&h=320&q=80",
+    imageAlt: "M. Shravya — data science graduate",
+    tags: ["Data Science", "PyTorch", "Fine-Tuning", "Pandas"],
+    quote: "The practical lab assessments match what companies look for.",
   },
   {
     name: "P. Rahul",
     role: "Business Analyst",
+    courseSlug: "business-analyst-with-genai",
     company: "Capgemini",
     package: "8.2 LPA",
     initial: "PR",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=480&h=320&q=80",
+    imageAlt: "P. Rahul — business analyst graduate",
+    tags: ["GenAI Tools", "SQL", "Tableau", "Power BI"],
+    quote: "Corporate referral sessions directly helped land my interview.",
   },
   {
     name: "G. Harish",
     role: "Python Developer",
+    courseSlug: "full-stack-python-with-ai",
     company: "Cognizant",
     package: "7.8 LPA",
     initial: "GH",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=480&h=320&q=80",
+    imageAlt: "G. Harish — Python developer graduate",
+    tags: ["Python", "FastAPI", "VectorDB", "Deployment"],
+    quote: "Going from scratch to deploying live APIs built my confidence.",
   },
 ];
 
@@ -334,8 +385,8 @@ export const HIRING_COMPANIES = [
 
 /** Default partners; courses can override with `hiringPartners` when loaded from backend. */
 export function getHiringPartnersForCourse(course) {
-  if (course?.hiringPartners?.length) return course.hiringPartners
-  return HIRING_PARTNER_BRANDS
+  if (course?.hiringPartners?.length) return course.hiringPartners;
+  return HIRING_PARTNER_BRANDS;
 }
 
 export const HIRING_PARTNER_BRANDS = [

@@ -5,9 +5,16 @@ export function getPerformanceTier() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'low'
 
   const mobile = window.innerWidth < 768
+  if (mobile) return 'medium'
+
+  // Retina / HiDPI laptops (e.g. MacBook Pro) — heavy 3D + high DPR causes lag
+  const dpr = window.devicePixelRatio || 1
+  if (dpr > 1.5) return 'medium'
+
   const cores = navigator.hardwareConcurrency || 4
-  if (mobile || cores <= 4) return 'medium'
-  return 'high'
+  if (cores > 6) return 'medium'
+
+  return 'medium'
 }
 
 export default function usePerformanceTier() {
