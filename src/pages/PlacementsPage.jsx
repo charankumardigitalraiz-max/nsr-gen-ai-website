@@ -5,7 +5,7 @@ import AppLink from '../components/AppLink'
 
 export default function PlacementsPage() {
   return (
-    <section id="placements" className="relative -mt-5 overflow-hidden bg-gh-canvas pb-16 sm:-mt-6">
+    <section id="placements" className="page-content-top-space relative overflow-hidden bg-gh-canvas pb-16">
       <div className="pointer-events-none absolute top-1/3 left-0 h-[400px] w-[400px] rounded-full bg-[#00a86b]/5 blur-3xl lg:blur-[72px]" />
       <div className="pointer-events-none absolute bottom-1/3 right-0 h-[400px] w-[400px] rounded-full bg-gh-purple/5 blur-3xl lg:blur-[72px]" />
 

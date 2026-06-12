@@ -22,15 +22,15 @@ export default function HiringPartners() {
       </div>
 
       <div
-        className="relative z-10 w-full overflow-hidden py-4
-        before:absolute before:top-0 before:left-0 before:z-20 before:h-full before:w-20 before:bg-gradient-to-r before:from-gh-canvas before:to-transparent sm:before:w-40
-        after:absolute after:top-0 after:right-0 after:z-20 after:h-full after:w-20 after:bg-gradient-to-l after:from-gh-canvas after:to-transparent sm:after:w-40"
+        className="relative z-10 w-full overflow-hidden py-2
+        before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-16 before:bg-gradient-to-r before:from-gh-canvas before:to-transparent sm:before:w-28
+        after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:w-16 after:bg-gradient-to-l after:from-gh-canvas after:to-transparent sm:after:w-28"
       >
-        <div className="animate-ticker flex w-max gap-8 whitespace-nowrap hover:[animation-play-state:paused]">
+        <div className="animate-ticker flex w-max items-center gap-10 px-4 whitespace-nowrap hover:[animation-play-state:paused]">
           {tripledCompanies.map((company, index) => (
             <div
               key={`${company.name}-${index}`}
-              className={`inline-flex h-25 w-auto shrink-0 items-center justify-center rounded-lg border border-slate-200/50 bg-white/70 px-6 text-slate-400 shadow-md backdrop-blur-md transition-all duration-300 sm:px-8 ${company.color} hover:-translate-y-0.5 hover:scale-[1.02]`}
+              className="inline-flex h-14 shrink-0 items-center justify-center rounded-lg border border-slate-100 bg-[#f1f8f4]/60 px-6 sm:h-16 sm:px-8"
               aria-label={company.name}
             >
               <PartnerLogo company={company} />
@@ -38,6 +38,7 @@ export default function HiringPartners() {
           ))}
         </div>
       </div>
+      
     </div>
   )
 }

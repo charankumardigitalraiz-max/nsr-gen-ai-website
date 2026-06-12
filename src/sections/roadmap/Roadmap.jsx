@@ -33,7 +33,7 @@ export default function Roadmap() {
   }
 
   return (
-    <section id="roadmap" className="relative overflow-hidden bg-gh-canvas">
+    <section id="roadmap" className="page-content-top relative overflow-hidden bg-gh-canvas pb-14">
       {/* Dynamic background mesh blurs */}
       <div className="absolute top-1/2 right-1/4 h-[350px] w-[350px] rounded-full bg-gh-purple/5 blur-3xl lg:blur-[72px] pointer-events-none" />
 

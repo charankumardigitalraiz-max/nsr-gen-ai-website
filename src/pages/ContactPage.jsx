@@ -1,17 +1,21 @@
+import { useState } from 'react'
 import { ArrowLeft, ArrowRight, MapPin, PhoneCall } from 'lucide-react'
 import ContactContent from '../sections/contact/ContactContent'
 import { PHONE, WHATSAPP_DEMO } from '../constants/content'
 import { ROUTES } from '../constants/routes'
 import AppLink from '../components/AppLink'
+import EnrollModal from '../components/ui/EnrollModal'
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&h=400&q=80'
 
 export default function ContactPage() {
+  const [demoOpen, setDemoOpen] = useState(false)
+
   return (
     <section
       id="contact"
-      className="relative -mt-5 overflow-hidden bg-gradient-to-b from-[#f8faf9] via-white to-white pb-16 sm:-mt-6"
+      className="page-hero-flush relative overflow-hidden bg-gradient-to-b from-[#f8faf9] via-white to-white pb-16"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <AppLink
@@ -41,20 +45,19 @@ export default function ContactPage() {
             <h1 className="max-w-xl font-rubik text-xl font-extrabold leading-tight tracking-tight text-white sm:text-2xl lg:text-3xl">
               Get in touch with <span className="text-[#a7f3d0]">NSR Academy</span>
             </h1>
-            <p className="mt-1.5 max-w-md text-[11px] leading-relaxed text-white/80 sm:mt-2 sm:text-xs">
+            <p className="mt-1.5 max-w-md text-sm leading-relaxed text-white/80 sm:mt-2 sm:text-base">
               Admissions, demo sessions & placement support — form, WhatsApp, or visit KPHB campus.
             </p>
 
             <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
-              <a
-                href={WHATSAPP_DEMO}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-hero inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold sm:px-5 sm:py-2.5 sm:text-sm"
+              <button
+                type="button"
+                onClick={() => setDemoOpen(true)}
+                className="btn-hero inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold sm:px-5 sm:py-2.5 sm:text-sm cursor-pointer"
               >
                 Book a free demo
                 <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              </a>
+              </button>
               <a
                 href={`tel:+91${PHONE}`}
                 className="inline-flex items-center gap-1.5 rounded-full border border-[#52b788]/35 bg-[#00a86b]/20 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition hover:bg-[#00a86b]/35 sm:px-3 sm:py-1.5 sm:text-xs"
@@ -72,6 +75,12 @@ export default function ContactPage() {
 
         <ContactContent />
       </div>
+
+      <EnrollModal
+        open={demoOpen}
+        onClose={() => setDemoOpen(false)}
+        defaultCourse=""
+      />
     </section>
   )
 }

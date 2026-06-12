@@ -1,46 +1,40 @@
-import { ArrowUpRight, Trophy } from 'lucide-react'
 import { SUCCESSFUL_STUDENTS } from '../../constants/content'
-import { ROUTES } from '../../constants/routes'
-import AppLink from '../../components/AppLink'
 import StudentPlacementCard from './StudentPlacementCard'
 
-export default function SuccessStories() {
-  return (
-    <section className="relative overflow-hidden bg-gh-canvas">
-      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00a86b]/5 blur-3xl lg:blur-[72px]" />
+export default function SuccessStories({ embedded = false }) {
+  const sectionClass = embedded 
+    ? 'boot-section boot-section--white py-16 sm:py-20 overflow-hidden' 
+    : 'relative overflow-hidden bg-gh-canvas py-16 sm:py-20'
+  
+  const doubledStudents = [...SUCCESSFUL_STUDENTS, ...SUCCESSFUL_STUDENTS, ...SUCCESSFUL_STUDENTS]
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="section-tag">
-            <Trophy className="h-3.5 w-3.5" />
-            Verified Careers
-          </span>
-          <h2 className="section-title">
-            Successful Placement <span className="highlight">Records</span>
+  return (
+    <section className={sectionClass}>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 mb-10">
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="font-rubik text-3xl font-extrabold text-[#1b4332] sm:text-4xl">
+            Building software careers, <span className="highlight">one success story at a time</span>
           </h2>
-          <p className="mx-auto max-w-lg text-sm font-medium text-gh-muted">
-            Learn from graduates who transitioned into stable engineering and analytics positions at
-            verified MNC companies.
+          <p className="mt-4 text-slate-600 font-medium">
+            Hear from our graduates who successfully transitioned into high-paying tech roles.
           </p>
         </div>
+      </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {SUCCESSFUL_STUDENTS.map((student) => (
-            <StudentPlacementCard key={student.name} student={student} />
+      {/* Auto-scrolling Ticker Track */}
+      <div className="relative w-full overflow-hidden py-4
+        before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-16 before:bg-gradient-to-r before:from-white before:to-transparent sm:before:w-32
+        after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:w-16 after:bg-gradient-to-l after:from-white after:to-transparent sm:after:w-32"
+      >
+        <div className="animate-ticker flex w-max items-stretch gap-6 px-4 hover:[animation-play-state:paused]">
+          {doubledStudents.map((student, idx) => (
+            <div key={`${student.name}-${idx}`} className="w-[220px] sm:w-[260px] shrink-0 flex">
+              <StudentPlacementCard student={student} />
+            </div>
           ))}
         </div>
-
-        <div className="mt-10 text-center">
-          <AppLink
-            to={ROUTES.placements}
-            className="btn-hero inline-flex items-center gap-2 px-8 py-3 text-xs font-bold"
-          >
-            <span>View all placement records</span>
-            <ArrowUpRight className="h-4 w-4" />
-          </AppLink>
-        </div>
       </div>
-      
     </section>
   )
 }
+

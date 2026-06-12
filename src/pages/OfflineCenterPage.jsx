@@ -9,7 +9,7 @@ const HERO_IMAGE =
 
 export default function OfflineCenterPage() {
   return (
-    <section id="offline-center" className="relative -mt-5 overflow-hidden bg-gh-canvas pb-16 sm:-mt-6">
+    <section id="offline-center" className="page-hero-flush relative overflow-hidden bg-gh-canvas pb-16">
       <div className="pointer-events-none absolute top-0 left-1/4 h-96 w-96 rounded-full bg-[#00a86b]/5 blur-3xl lg:blur-[72px]" />
       <div className="pointer-events-none absolute bottom-1/4 right-0 h-80 w-80 rounded-full bg-gh-purple/5 blur-3xl lg:blur-[72px]" />
 

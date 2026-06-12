@@ -124,14 +124,14 @@ export default function AboutContent({ preview = false, fullPage = false }) {
           <h2 className="section-title text-left">
             Learn · Create · <span className="highlight">Innovate · Transform</span>
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-gh-muted">
+          <p className="mt-3 text-base leading-relaxed text-gh-muted">
             We train for real jobs — not theory alone. From your first Python line to deploying GenAI
             apps, every step is guided by mentors who have shipped products in the industry.
           </p>
 
           {fullPage && (
             <div className="mt-4 rounded-lg border-l-[3px] border-[#00a86b] bg-[#f1f8f4]/60 px-3.5 py-2.5">
-              <p className="text-xs leading-relaxed text-[#2d6a4f]">
+              <p className="text-sm leading-relaxed text-[#2d6a4f]">
                 Freshers start from zero. Working professionals upskill without leaving their job.
                 Everyone graduates with portfolio projects — not just certificates.
               </p>
@@ -152,8 +152,8 @@ export default function AboutContent({ preview = false, fullPage = false }) {
                     </span>
                   </div>
                   <div className="min-w-0 flex-1 border-l border-slate-100 px-3 py-2.5 sm:px-4 sm:py-3">
-                    <h3 className="font-rubik text-xs font-bold text-[#1b4332] sm:text-[13px]">{title}</h3>
-                    <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500 sm:text-xs">{desc}</p>
+                    <h3 className="font-rubik text-sm font-bold text-[#1b4332]">{title}</h3>
+                    <p className="mt-0.5 text-xs leading-relaxed text-slate-500 sm:text-sm">{desc}</p>
                   </div>
                 </div>
               ),
@@ -170,7 +170,7 @@ export default function AboutContent({ preview = false, fullPage = false }) {
               <h2 className="section-title">
                 Four pillars of <span className="highlight">modern AI</span>
               </h2>
-              <p className="text-sm text-gh-muted">
+              <p className="text-lg text-gh-muted">
                 A balanced curriculum across code, language models, creative AI, and autonomous agents.
               </p>
             </div>
@@ -197,10 +197,10 @@ export default function AboutContent({ preview = false, fullPage = false }) {
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-4">
-                    <h3 className="font-rubik text-sm font-bold leading-snug text-[#1b4332]">
+                    <h3 className="font-rubik text-sm font-extrabold leading-snug text-[#1b4332]">
                       {pillar.title || pillar.label}
                     </h3>
-                    <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">{pillar.desc}</p>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{pillar.desc}</p>
                     {(pillar.topics || []).length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-1">
                         {pillar.topics.map((tag) => (
@@ -225,7 +225,7 @@ export default function AboutContent({ preview = false, fullPage = false }) {
               <h2 className="section-title">
                 Our core <span className="highlight">values</span>
               </h2>
-              <p className="text-sm text-gh-muted">
+              <p className="text-lg text-gh-muted">
                 The principles behind how we teach, mentor, and support you until you land your offer.
               </p>
             </div>
@@ -245,8 +245,8 @@ export default function AboutContent({ preview = false, fullPage = false }) {
                       </span>
                     </div>
                     <div className="min-w-0 flex-1 lg:mt-4">
-                      <h3 className="font-rubik text-sm font-bold text-[#1b4332] sm:text-base">{title}</h3>
-                      <p className="mt-1.5 text-xs leading-relaxed text-slate-600 sm:text-sm">{desc}</p>
+                      <h3 className="font-rubik text-base font-bold text-[#1b4332]">{title}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -288,10 +288,10 @@ export default function AboutContent({ preview = false, fullPage = false }) {
                 <Handshake className="h-3.5 w-3.5" />
                 Hiring network
               </span> */}
-              <h2 className="section-title">  
+              <h2 className="section-title">
                 Trusted by leading <span className="highlight">MNCs</span>
               </h2>
-              <p className="mt-2 text-sm text-[#2d6a4f]/90">
+              <p className="mt-2 text-base text-[#2d6a4f]/90">
                 Our placement network connects graduates with technology consulting and product firms.
               </p>
             </div>
@@ -306,8 +306,8 @@ export default function AboutContent({ preview = false, fullPage = false }) {
 
       {!preview && (
         <>
-      {/* Academy strengths */}
-      {/* <div className="mb-16">
+          {/* Academy strengths */}
+          {/* <div className="mb-16">
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <span className="section-tag mx-auto w-fit justify-center">Why NSR</span>
           <h2 className="section-title">
@@ -336,35 +336,35 @@ export default function AboutContent({ preview = false, fullPage = false }) {
         </div>
       </div> */}
 
-      {/* CTA */}
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-10 text-center shadow-[0_8px_28px_rgb(15_23_42/0.08)] sm:px-10 sm:py-12">
-        <h3 className="relative font-rubik text-xl font-bold text-slate-900 sm:text-2xl">
-          Ready to start your <span className="highlight">GenAI journey?</span>
-        </h3>
-        <p className="relative mx-auto mt-2 max-w-md text-sm text-[#2d6a4f]/90">
-          Explore our programs, visit the KPHB campus, or speak with admissions to find your track.
-        </p>
-        <div className="relative mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <AppLink to={ROUTES.courses} className="btn-hero inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold">
-            View courses
-            <ArrowRight className="h-4 w-4" />
-          </AppLink>
-          <AppLink
-            to={ROUTES.offlineCenter}
-            className="btn-hero-outline inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold"
-          >
-            Visit campus
-          </AppLink>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-hero-outline inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold"
-          >
-            Talk to admissions
-          </a>
-        </div>
-      </div>
+          {/* CTA */}
+          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-10 text-center shadow-[0_8px_28px_rgb(15_23_42/0.08)] sm:px-10 sm:py-12">
+            <h3 className="relative font-rubik text-xl font-bold text-slate-900 sm:text-2xl">
+              Ready to start your <span className="highlight">GenAI journey?</span>
+            </h3>
+            <p className="relative mx-auto mt-2 max-w-md text-base text-[#2d6a4f]/90">
+              Explore our programs, visit the KPHB campus, or speak with admissions to find your track.
+            </p>
+            <div className="relative mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <AppLink to={ROUTES.courses} className="btn-hero inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold">
+                View courses
+                <ArrowRight className="h-4 w-4" />
+              </AppLink>
+              <AppLink
+                to={ROUTES.offlineCenter}
+                className="btn-hero-outline inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold"
+              >
+                Visit campus
+              </AppLink>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-hero-outline inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold"
+              >
+                Talk to admissions
+              </a>
+            </div>
+          </div>
         </>
       )}
     </>

@@ -1,7 +1,8 @@
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import FloatingWhatsApp from './components/layout/FloatingWhatsApp'
+import FloatingVideoWidget from './components/layout/FloatingVideoWidget'
 import InteractiveGridBackground from './components/ui/InteractiveGridBackground'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
@@ -15,12 +16,9 @@ import TrainingPage from './pages/TrainingPage'
 import RoadmapPage from './pages/RoadmapPage'
 import ContactPage from './pages/ContactPage'
 import OfflineCenterPage from './pages/OfflineCenterPage'
-import { isFullBleedHero, redirectLegacyHashRoute } from './constants/routes'
+import { redirectLegacyHashRoute } from './constants/routes'
 
 function AppLayout() {
-  const { pathname } = useLocation()
-  const fullBleedHero = isFullBleedHero(pathname)
-
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-gh-canvas text-gh-fg antialiased selection:bg-gh-purple/10 selection:text-gh-fg">
       <InteractiveGridBackground />
@@ -32,7 +30,7 @@ function AppLayout() {
         <ScrollToTop />
         <Navbar />
 
-        <main className={`flex-grow ${fullBleedHero ? '' : 'pt-[4.75rem] sm:pt-[5.25rem]'}`}>
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/courses" element={<CoursesPage />} />
@@ -50,6 +48,7 @@ function AppLayout() {
         </main>
 
         <Footer />
+        <FloatingVideoWidget />
         <FloatingWhatsApp />
       </div>
     </div>

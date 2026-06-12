@@ -1,5 +1,5 @@
 import { Trophy } from 'lucide-react'
-import { SUCCESSFUL_STUDENTS } from '../../constants/content'
+import { SUCCESSFUL_STUDENTS, HIRING_PARTNER_BRANDS } from '../../constants/content'
 import StudentAvatar from '../../components/ui/StudentAvatar'
 
 const IMPACT_STATS = [
@@ -9,21 +9,37 @@ const IMPACT_STATS = [
   { value: '50+', label: 'Hiring partners' },
 ]
 
+// Build company name → logo path lookup
+const COMPANY_LOGO_MAP = Object.fromEntries(
+  HIRING_PARTNER_BRANDS
+    .filter((b) => b.logo)
+    .map((b) => [b.name.toLowerCase(), b.logo])
+)
+
 function SpotlightStudentCard({ student }) {
+  const logoSrc = COMPANY_LOGO_MAP[student.company?.toLowerCase()]
   return (
-    <article className="inline-flex w-[228px] shrink-0 items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-[0_2px_12px_rgb(15_23_42/0.08)] sm:w-[248px]">
-      <StudentAvatar student={student} size="sm" />
+    <article className="inline-flex w-[280px] shrink-0 items-center gap-3.5 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-[0_2px_12px_rgb(15_23_42/0.08)] sm:w-[310px]">
+      <StudentAvatar student={student} size="md" />
+      {/* Left: name + role */}
       <div className="min-w-0 flex-1">
-        <h3 className="truncate font-rubik text-xs font-bold text-slate-900">{student.name}</h3>
-        <p className="truncate text-[10px] font-semibold uppercase tracking-wide text-[#00a86b]">
+        <h3 className="truncate font-rubik text-sm font-bold text-slate-900">{student.name}</h3>
+        <p className="truncate text-xs font-semibold uppercase tracking-wide text-[#00a86b]">
           {student.role}
         </p>
-        <div className="mt-1.5 flex items-center justify-between gap-2">
-          <span className="truncate rounded-md bg-[#f1f8f4] px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wide text-[#00a86b] ring-1 ring-[#00a86b]/20">
+      </div>
+      {/* Right: logo above package */}
+      <div className="flex shrink-0 flex-col items-end gap-1.5">
+        {logoSrc ? (
+          <span className="inline-flex items-center rounded-md bg-[#f1f8f4] px-2 py-1 ring-1 ring-[#00a86b]/15">
+            <img src={logoSrc} alt={student.company} className="h-7 max-w-[80px] object-contain" />
+          </span>
+        ) : (
+          <span className="rounded-md bg-[#f1f8f4] px-2 py-1 text-[11px] font-extrabold uppercase tracking-wide text-[#00a86b] ring-1 ring-[#00a86b]/20">
             {student.company}
           </span>
-          <span className="shrink-0 text-[11px] font-extrabold text-[#1b4332]">{student.package}</span>
-        </div>
+        )}
+        <span className="text-xs font-extrabold text-[#1b4332]">{student.package}</span>
       </div>
     </article>
   )
@@ -64,7 +80,7 @@ export default function AboutSuccessSpotlight() {
           </div>
 
           <div className="relative mt-8 overflow-hidden py-1">
-            <div className="animate-ticker flex w-max items-center gap-3 hover:[animation-play-state:paused]">
+            <div className="animate-ticker flex w-max items-center gap-4 hover:[animation-play-state:paused]">
               {scrollingStudents.map((student, index) => (
                 <SpotlightStudentCard key={`${student.name}-${index}`} student={student} />
               ))}

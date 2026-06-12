@@ -1,5 +1,19 @@
 export const HERO_VIDEO = "/Artificual ai video.mp4";
 
+/** Left floating promo widget — files in `public/video/` */
+export const FLOATING_PROMO_VIDEOS = [
+  // {
+  //   src: "/video/promotion-video1.mp4",
+  //   title: "Campus & classroom tour",
+  //   label: "Watch campus tour",
+  // },
+  {
+    src: "/video/promotion-video2.mp4",
+    title: "Student placement story",
+    label: "Hear from our students",
+  },
+];
+
 export const PHONE = "6281079591";
 
 export const WHATSAPP = `https://wa.me/91${PHONE}?text=Hi%20NSR%20Academy%2C%20I%20want%20to%20register%20for%20the%20GenAI%20course.`;
@@ -13,7 +27,7 @@ export {
   ROUTES,
   courseDetailPath,
   blogDetailPath,
-} from './routes'
+} from "./routes";
 
 /** Training section hero — stock photo (Unsplash) */
 export const TRAINING_HERO_IMAGE = {
@@ -30,7 +44,7 @@ export const TRAINING_SERVICES = [
     tag: "Core Program",
     accent: "gh-blue",
     image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&h=500&q=80",
+      "/images/classroom training.jpg",
     imageAlt: "Instructor teaching students in a classroom",
   },
   {
@@ -40,7 +54,7 @@ export const TRAINING_SERVICES = [
     tag: "Hands-on",
     accent: "gh-purple",
     image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&h=500&q=80",
+      "/images/Live Projects.jpg",
     imageAlt: "Team collaborating on a live coding project",
   },
   {
@@ -50,7 +64,7 @@ export const TRAINING_SERVICES = [
     tag: "Workshop",
     accent: "cyber-pink",
     image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&h=500&q=80",
+      "/images/GenAI.jpg",
     imageAlt: "Generative AI and machine learning workshop",
   },
   {
@@ -60,7 +74,7 @@ export const TRAINING_SERVICES = [
     tag: "B2B",
     accent: "gh-green",
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&h=500&q=80",
+      "/images/corporate training.jpg",
     imageAlt: "Corporate team in a professional training session",
   },
   {
@@ -70,7 +84,7 @@ export const TRAINING_SERVICES = [
     tag: "Placement",
     accent: "gh-blue",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&h=500&q=80",
+      "/images/Interview Training.jpg",
     imageAlt: "Candidate preparing for a technical interview",
   },
   {
@@ -80,7 +94,7 @@ export const TRAINING_SERVICES = [
     tag: "Career",
     accent: "gh-purple",
     image:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&h=500&q=80",
+      "/images/placementAssistance.jpg",
     imageAlt: "Career placement and job offer handshake",
   },
   {
@@ -290,10 +304,117 @@ export const HIGHLIGHTS = [
   "Zero-to-Hero Learning Path",
 ];
 
+/**
+ * Homepage hero banner slider — fills full screen (width + height) on laptops/desktops.
+ *
+ * RECOMMENDED SIZES (export at highest quality you have):
+ * | Screen type        | Pixels (W × H) | Notes                          |
+ * |--------------------|----------------|--------------------------------|
+ * | Standard laptop    | 1920 × 1080    | 16:9 — most common             |
+ * | MacBook / 16:10    | 1920 × 1200    | Better fit on taller laptops   |
+ * | Large / 2K screen  | 2560 × 1440    | Retina, sharp on big displays  |
+ *
+ * Hero uses object-cover: image always fills 100% width AND 100% viewport height.
+ * Keep main subject CENTER-RIGHT; left ~35% has text overlay.
+ * Format: JPG or WebP, 200–400 KB. No portrait/square images.
+ */
+export const HERO_BANNER_SIZE = {
+  standard: { width: 1920, height: 1080, ratio: "16:9" },
+  laptop: { width: 1920, height: 1200, ratio: "16:10" },
+  large: { width: 2560, height: 1440, ratio: "16:9" },
+};
+
+export const HERO_BANNER_SLIDES = [
+  {
+    src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2560&h=1440&q=85",
+    alt: "Students learning GenAI at NSR ProSkills Academy classroom",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2560&h=1440&q=85",
+    alt: "Instructor-led GenAI bootcamp session at KPHB Hyderabad",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2560&h=1440&q=85",
+    alt: "Students collaborating on AI and data science projects",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2560&h=1440&q=85",
+    alt: "Team workshop and placement preparation at NSR Academy",
+  },
+];
+
+/** Full-width homepage dividers — 50vh banner strips between sections (1920×1080 recommended). */
+export const HOME_SECTION_BANNERS = [
+  {
+    src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2560&h=1080&q=85",
+    alt: "Students preparing for placement interviews at NSR ProSkills Academy",
+    eyebrow: "Placement pipeline",
+    titleBefore: "From classroom to ",
+    highlight: "your first offer",
+    description:
+      "Mock interviews, resume labs, and hiring partner drives — we stay with you until you sign the offer letter.",
+    ctaLabel: "See placement process",
+    ctaHref: "/placements",
+    align: "left",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2560&h=1080&q=85",
+    alt: "Mentor guiding students at KPHB Hyderabad campus",
+    eyebrow: "Offline at KPHB",
+    titleBefore: "Learn GenAI where ",
+    highlight: "mentors know your name",
+    description:
+      "Small batches, hands-on labs, and 1-on-1 guidance on our Hyderabad campus — not another recorded course.",
+    ctaLabel: "Talk to an advisor",
+    ctaHref: "/contact",
+    align: "center",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2560&h=1080&q=85",
+    alt: "GenAI bootcamp training session with students building real projects",
+    eyebrow: "Real projects",
+    titleBefore: "Build portfolios that ",
+    highlight: "get callbacks",
+    description:
+      "Capstone work with Python, LLMs, RAG, and dashboards — the proof recruiters ask for in 2026.",
+    ctaLabel: "Explore courses",
+    ctaHref: "/courses",
+    align: "right",
+  },
+];
+
 export const HERO_STATS = [
-  { value: "11M+", label: "AI Jobs Coming", color: "text-gh-blue" },
-  { value: "7–15 LPA", label: "Average Package", color: "text-white" },
-  { value: "100%", label: "Placement Support", color: "text-gh-green" },
+  { value: "500+", label: "Learners trained" },
+  { value: "7–15 LPA", label: "Package range" },
+  { value: "100%", label: "Placement support" },
+];
+
+export const PLACEMENT_PROCESS_STEPS = [
+  {
+    step: "01",
+    title: "Complete the Course",
+    desc: "Build real-world projects and clear assignments.",
+  },
+  {
+    step: "02",
+    title: "CRPR Clearance",
+    desc: "Pass our Career Readiness & Project Review process.",
+  },
+  {
+    step: "03",
+    title: "Placement Activation",
+    desc: "Get added to our active placement support pool.",
+  },
+  {
+    step: "04",
+    title: "Interview Scheduling",
+    desc: "We match you with hiring partners.",
+  },
+  {
+    step: "05",
+    title: "Get Your Offer Letter",
+    desc: "Land your first job in IT with our help.",
+  },
 ];
 
 export const HERO_FEATURES = [
@@ -372,6 +493,32 @@ export const SUCCESSFUL_STUDENTS = [
     tags: ["Python", "FastAPI", "VectorDB", "Deployment"],
     quote: "Going from scratch to deploying live APIs built my confidence.",
   },
+  {
+    name: "A. Priya",
+    role: "Full Stack Developer",
+    courseSlug: "full-stack-python-with-ai",
+    company: "Infosys",
+    package: "10 LPA",
+    initial: "AP",
+    image:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=480&h=320&q=80",
+    imageAlt: "A. Priya — full stack developer graduate",
+    tags: ["React", "Node.js", "GenAI"],
+    quote: "The placement team stayed with me until I accepted my offer.",
+  },
+  {
+    name: "R. Vikram",
+    role: "Data Analyst",
+    courseSlug: "data-analyst-with-genai",
+    company: "Wipro",
+    package: "8.5 LPA",
+    initial: "RV",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=480&h=320&q=80",
+    imageAlt: "R. Vikram — data analyst graduate",
+    tags: ["SQL", "Power BI", "Python"],
+    quote: "Mock interviews prepared me for every round.",
+  },
 ];
 
 export const HIRING_COMPANIES = [
@@ -428,4 +575,116 @@ export const AI_HUB_NODES = [
   { label: "Text", icon: "📝", pos: "right-0 top-1/2 -translate-y-1/2" },
   { label: "Art", icon: "🎨", pos: "bottom-0 left-1/2 -translate-x-1/2" },
   { label: "Agents", icon: "🤖", pos: "left-0 top-1/2 -translate-y-1/2" },
+];
+
+export const RECRUITER_TESTIMONIALS = [
+  {
+    name: "Sharanya Prasad Meruga",
+    role: "TA Lead",
+    company: "Enterpi Software Solutions",
+    quote:
+      "The candidates from NSR exhibit strong foundational skills in full-stack web development. Their project-based approach prepares them well for industry challenges from day one.",
+    avatar:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80",
+  },
+  {
+    name: "Vaishnavi Anumula",
+    role: "Founder's Office",
+    company: "Swio",
+    quote:
+      "We hired multiple developers from their pool and found them to be quick learners who adapt to modern tools and GenAI workflows exceptionally well.",
+    avatar:
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&h=120&q=80",
+  },
+  {
+    name: "Raksha Yadav",
+    role: "Technical Recruiter",
+    company: "Geeksynergy Technologies",
+    quote:
+      "Their training methodology focuses heavily on practical coding, which translates directly to solid interview performance. They know how to build real products.",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+  },
+  {
+    name: "Husna Shaik",
+    role: "HR Manager",
+    company: "SOPEONOW",
+    quote:
+      "Very professional placement process. The students are well-prepared not just technically, but also in communication and team collaboration.",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80",
+  },
+];
+
+export const FOUNDERS_INFO = [
+  {
+    name: "Anil Kumar Ghorakavi",
+    role: "Founder",
+    credentials: "Ex-Oracle, Amazon",
+    bgClass: "from-[#ff8541]/10 to-[#ff8541]/20",
+    avatar:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&h=300&q=80",
+    companies: ["Oracle", "Amazon"],
+  },
+  {
+    name: "Rakesh Kumar",
+    role: "Founder",
+    credentials: "Founder, Engrip & 10000 Coders",
+    bgClass: "from-[#e84975]/10 to-[#e84975]/20",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&h=300&q=80",
+    companies: ["engrip", "Revid"],
+  },
+  {
+    name: "Praveen Kumar",
+    role: "Co-Founder",
+    credentials: "Ex-Microsoft",
+    bgClass: "from-[#00a86b]/10 to-[#00a86b]/20",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&h=300&q=80",
+    companies: ["Microsoft"],
+  },
+];
+
+export const VIDEO_TESTIMONIALS = [
+  {
+    studentName: "Shashi",
+    role: "Backend Developer",
+    company: "TVAST COMPANY",
+    quote:
+      "NSR  was different from other institutes because it takes care of each person individually with 1:1 mentor support.",
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80",
+  },
+  {
+    studentName: "Sai Kiran",
+    role: "GenAI Developer",
+    company: "Accenture",
+    quote:
+      "Going from absolute coding basics to deploying live AI pipelines built my confidence and helped me land an offer of 12 LPA.",
+    videoUrl: "https://www.w3schools.com/html/movie.mp4",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&h=100&q=80",
+  },
+  {
+    studentName: "Shravya",
+    role: "Data Scientist",
+    company: "TCS",
+    quote:
+      "The hands-on curriculum, daily assignments, and mockup interviews prepared me fully to face recruiters with confidence.",
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+    avatar:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80",
+  },
+  {
+    studentName: "Rupesh",
+    role: "Frontend Engineer",
+    company: "HUEMN",
+    quote:
+      "The environment here is very collaborative. Instructors are always available in the labs to solve queries and support projects.",
+    videoUrl: "https://www.w3schools.com/html/movie.mp4",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80",
+  },
 ];

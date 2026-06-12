@@ -1,38 +1,39 @@
 import { ArrowUpRight, ShieldCheck } from 'lucide-react'
 import StudentAvatar from '../../components/ui/StudentAvatar'
 
-export default function StudentPlacementCard({ student }) {
+export default function StudentPlacementCard({ student, variant = 'default' }) {
   const tags = student.tags || ['GenAI', 'Python']
   const quote = student.quote || ''
+  const isBoot = variant === 'boot'
 
   return (
-    <article className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:border-[#00a86b]/30 hover:shadow-md">
+    <article className={isBoot ? 'boot-testimonial-card' : 'flex flex-col justify-between rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-sm transition duration-300 hover:border-[#00a86b]/30 hover:shadow-md w-full'}>
       <div>
-        <div className="mb-5 flex items-center justify-between">
-          <StudentAvatar student={student} size="lg" />
+        <div className="mb-4 flex items-center justify-between">
+          <StudentAvatar student={student} size="md" />
 
-          <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[9px] font-extrabold uppercase text-emerald-600">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Verified Offer
+          <span className="inline-flex items-center gap-1 rounded-full border border-[#00a86b]/20 bg-[#f1f8f4] px-2.5 py-0.5 text-[9px] sm:text-xs font-black uppercase text-[#00a86b]">
+            <ShieldCheck className="h-3 w-3" />
+            Verified
           </span>
         </div>
 
-        <h4 className="text-base font-extrabold tracking-tight text-slate-800">{student.name}</h4>
-        <p className="mt-0.5 text-xs font-extrabold uppercase tracking-wide text-gh-purple">
+        <h4 className="font-rubik text-base font-extrabold tracking-tight text-[#1b4332]">{student.name}</h4>
+        <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-[#00a86b]">
           {student.role}
         </p>
 
         {quote ? (
-          <p className="mt-3 text-xs font-medium italic leading-relaxed text-slate-500">
+          <p className="mt-2 text-xs sm:text-sm font-normal italic leading-relaxed text-slate-500">
             &ldquo;{quote}&rdquo;
           </p>
         ) : null}
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
+        <div className="mt-3 flex flex-wrap gap-1">
           {tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-md bg-slate-100 px-2 py-0.5 text-[9px] font-bold tracking-wide text-slate-600"
+              className="rounded bg-[#f1f8f4] border border-slate-100 px-1.5 py-0.5 text-[10px] sm:text-xs font-semibold text-[#2d6a4f]"
             >
               {tag}
             </span>
@@ -40,12 +41,12 @@ export default function StudentPlacementCard({ student }) {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
+      <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
         <div>
           <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Hired By
           </span>
-          <strong className="mt-0.5 block text-sm font-black tracking-tight text-slate-700">
+          <strong className="mt-0.5 block text-sm font-black tracking-tight text-[#1b4332]">
             {student.company}
           </strong>
         </div>
@@ -54,9 +55,9 @@ export default function StudentPlacementCard({ student }) {
           <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Package
           </span>
-          <span className="mt-0.5 inline-flex items-center gap-0.5 text-sm font-black tracking-tight text-gh-blue">
+          <span className="mt-0.5 inline-flex items-center gap-0.5 text-sm font-black tracking-tight text-[#00a86b]">
             {student.package}
-            <ArrowUpRight className="h-3.5 w-3.5" />
+            <ArrowUpRight className="h-3 w-3" />
           </span>
         </div>
       </div>

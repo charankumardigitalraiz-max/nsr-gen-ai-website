@@ -35,13 +35,9 @@ export default function PlacementsContent() {
 
       <PlacedStudentsSection />
 
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-8 shadow-[0_4px_20px_rgb(15_23_42/0.07)] sm:px-10 sm:py-10">
+      {/* <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-8 shadow-[0_4px_20px_rgb(15_23_42/0.07)] sm:px-10 sm:py-10">
         <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-xl text-left">
-            {/* <span className="section-tag mb-4 w-fit">
-              <Trophy className="h-3.5 w-3.5" />
-              Start Your Journey
-            </span> */}
 
             <h2 className="font-rubik text-2xl font-bold leading-snug tracking-tight text-slate-800 sm:text-3xl">
               Ready to Accelerate Your <span className="highlight">Career?</span>
@@ -83,7 +79,7 @@ export default function PlacementsContent() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

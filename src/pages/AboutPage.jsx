@@ -39,9 +39,9 @@ export default function AboutPage() {
   return (
     <section
       id="about-page"
-      className="relative -mt-5 overflow-hidden bg-gradient-to-b from-[#f8faf9] via-white to-white pb-2 sm:-mt-6"
+      className="page-hero-flush relative overflow-hidden bg-gradient-to-b from-[#f8faf9] via-white to-white pb-2"
     >
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-2">
         <AppLink
           to={ROUTES.home}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00a86b] transition hover:text-[#1b4332]"

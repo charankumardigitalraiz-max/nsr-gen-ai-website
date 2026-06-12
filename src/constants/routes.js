@@ -99,7 +99,7 @@ export function isNavLinkActive(currentPath, href) {
   return current === href
 }
 
-const FULL_BLEED_PAGES = new Set(['home', 'courseDetail', 'blogDetail'])
+const FULL_BLEED_PAGES = new Set(['courseDetail', 'blogDetail'])
 
 export function isFullBleedHero(pathname) {
   return FULL_BLEED_PAGES.has(parsePath(pathname).page)
@@ -107,7 +107,7 @@ export function isFullBleedHero(pathname) {
 
 export function isHeroNavMode(pathname, scrolled) {
   const { page } = parsePath(pathname)
-  return (page === 'home' || page === 'courseDetail') && !scrolled
+  return page === 'courseDetail' && !scrolled
 }
 
 /** Redirect old `/#/page` bookmarks to `/page` */

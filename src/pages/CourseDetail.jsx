@@ -142,7 +142,7 @@ export default function CourseDetail() {
   return (
     <div className="min-h-screen bg-gh-canvas  pb-24 lg:pb-16">
       {/* Hero — course image as background */}
-      <div className="cd-hero relative overflow-hidden border-b border-slate-900/20">
+      <div className="cd-hero page-hero-flush relative overflow-hidden border-b border-slate-900/20">
         <img
           src={course.image}
           alt=""

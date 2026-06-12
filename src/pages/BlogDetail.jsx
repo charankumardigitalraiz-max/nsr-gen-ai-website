@@ -107,7 +107,7 @@ export default function BlogDetail() {
   return (
     <article className="min-h-screen bg-gh-canvas pb-20">
       {/* Hero */}
-      <header className="bd-hero relative overflow-hidden border-b border-slate-900/10">
+      <header className="bd-hero page-hero-flush relative overflow-hidden border-b border-slate-900/10">
         <img src={post.image} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
         <div className="bd-hero-overlay" aria-hidden />
 

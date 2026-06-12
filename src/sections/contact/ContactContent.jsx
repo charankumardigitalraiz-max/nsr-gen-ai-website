@@ -118,9 +118,9 @@ export default function ContactContent() {
               >
                 <Icon className="h-5 w-5" strokeWidth={2} />
               </span>
-              <p className="mt-3 text-xs font-bold uppercase tracking-wide text-[#00a86b]">{label}</p>
-              <p className="mt-1 text-sm font-bold text-[#1b4332]">{value}</p>
-              <p className="mt-1 text-[11px] text-[#2d6a4f]/80">{hint}</p>
+              <p className="mt-3 text-sm font-bold uppercase tracking-wide text-[#00a86b]">{label}</p>
+              <p className="mt-1 text-base font-bold text-[#1b4332]">{value}</p>
+              <p className="mt-1 text-xs text-[#2d6a4f]/80">{hint}</p>
             </a>
           )
         })}
@@ -135,7 +135,7 @@ export default function ContactContent() {
             <h2 className="mt-2 font-rubik text-lg font-bold text-slate-900 sm:text-xl">
               Write to <span className="highlight">us</span>
             </h2>
-            <p className="mt-1 text-sm text-[#2d6a4f]/90">
+            <p className="mt-1 text-base text-[#2d6a4f]/90">
               Share your details and we&apos;ll connect you with our admissions team.
             </p>
             <div className="mt-6">
@@ -145,14 +145,14 @@ export default function ContactContent() {
 
           {/* Info panel */}
           <div className="bg-[#f8faf9] p-6 sm:p-8 lg:col-span-2 lg:border-l lg:border-slate-100">
-            <h3 className="font-rubik text-sm font-bold text-[#1b4332]">Campus & hours</h3>
+            <h3 className="font-rubik text-base font-bold text-[#1b4332]">Campus & hours</h3>
 
             <div className="mt-5 space-y-5">
               <div className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#00a86b]" strokeWidth={2} />
                 <div>
-                  <p className="text-sm font-medium text-slate-700">{ACADEMY_ADDRESS.line1}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                  <p className="text-base font-medium text-slate-700">{ACADEMY_ADDRESS.line1}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-500">
                     {ACADEMY_ADDRESS.line2}
                     <br />
                     {ACADEMY_ADDRESS.city}, {ACADEMY_ADDRESS.state} {ACADEMY_ADDRESS.pincode}
@@ -195,8 +195,8 @@ export default function ContactContent() {
                 {QUICK_LINKS.map((item) => {
                   const inner = (
                     <>
-                      <p className="text-xs font-semibold text-slate-800">{item.label}</p>
-                      <p className="text-[10px] text-slate-400">{item.desc}</p>
+                      <p className="text-sm font-semibold text-slate-800">{item.label}</p>
+                      <p className="text-xs text-slate-400">{item.desc}</p>
                     </>
                   )
 

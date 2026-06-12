@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   ArrowRight,
   Briefcase,
@@ -9,8 +10,9 @@ import {
   Target,
   UserRound,
   Wrench,
+  CheckCircle,
 } from 'lucide-react'
-import { TRAINING_HERO_IMAGE, TRAINING_SERVICES, WHATSAPP } from '../../constants/content'
+import { TRAINING_SERVICES, WHATSAPP } from '../../constants/content'
 import { ROUTES } from '../../constants/routes'
 import AppLink from '../../components/AppLink'
 
@@ -25,160 +27,219 @@ const SERVICE_ICONS = {
   mentor: UserRound,
 }
 
-const SERVICE_GROUPS = [
-  {
-    label: 'Learn',
-    desc: 'Structured programs for every schedule',
-    icons: ['classroom', 'weekend', 'workshop'],
-  },
-  {
-    label: 'Build',
-    desc: 'Hands-on labs and real project work',
-    icons: ['project', 'corporate'],
-  },
-  {
-    label: 'Place',
-    desc: 'Career coaching until you get hired',
-    icons: ['interview', 'placement', 'mentor'],
-  },
-]
-
-function ServiceRow({ service }) {
-  const Icon = SERVICE_ICONS[service.icon] || GraduationCap
-
-  return (
-    <div className="group flex gap-3 rounded-xl border border-transparent p-2 transition duration-200 hover:border-slate-200 hover:bg-slate-50">
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-slate-100">
-        <img
-          src={service.image}
-          alt=""
-          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-          loading="lazy"
-          aria-hidden
-        />
-        <span className="absolute inset-0 flex items-center justify-center bg-[#1b4332]/50">
-          <Icon className="h-4 w-4 text-white" strokeWidth={2} />
-        </span>
-      </div>
-      <div className="min-w-0 flex-1 pt-0.5">
-        <div className="flex flex-wrap items-center gap-2">
-          <h4 className="font-rubik text-sm font-semibold text-slate-800">{service.title}</h4>
-          <span className="rounded-md bg-[#f1f8f4] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#2d6a4f]">
-            {service.tag}
-          </span>
-        </div>
-        <p className="mt-1 text-xs leading-relaxed text-slate-500">{service.desc}</p>
-      </div>
-    </div>
-  )
+// Custom lists of details for each service to make the showcase rich and premium
+const SERVICE_HIGHLIGHTS = {
+  classroom: [
+    'Daily in-person lab sessions at Kukatpally (KPHB) campus',
+    'Structured curriculum taught by real-time working professionals',
+    'Personal desktop workstations with pre-configured development tools',
+  ],
+  project: [
+    'Build and deploy real-world production level GenAI & Full Stack apps',
+    'Get code reviews and architecture design help from senior mentors',
+    'Complete capstones designed to stand out to MNC hiring managers',
+  ],
+  workshop: [
+    'Intensive sessions on prompt engineering, LLM fine-tuning, and RAG',
+    'Learn cursor coding and claude code agentic workflows in real-time',
+    'Certificate of achievement provided upon project submission',
+  ],
+  corporate: [
+    'Custom tailored corporate training sessions for IT services groups',
+    'Upskilling in Python, GenAI integrations, agentic workflows, and cloud',
+    'Flexible scheduling with options for onsite or remote delivery',
+  ],
+  interview: [
+    'Frequent mock interviews with senior recruiters and engineering managers',
+    'Structured communication and soft-skills grooming classes',
+    'Topic-wise assessments covering coding, databases, and system design',
+  ],
+  placement: [
+    '100% placement support pool access with 2500+ corporate hiring partners',
+    'Resume crafting workshops targeting applicant tracking systems (ATS)',
+    'Exclusive job openings and recruitment drives held at our campus',
+  ],
+  weekend: [
+    'Convenient weekend hours designed for working professionals and students',
+    'Full access to curriculum portals, recordings, and online support',
+    'Covers complete full-stack syllabus at a balanced pace',
+  ],
+  mentor: [
+    'Assigned dedicated program manager to track progress weekly',
+    '1-on-1 weekly doubt clearing sessions with top industry experts',
+    'Personal career guidance, mock interviews, and portfolio reviews',
+  ],
 }
 
-export default function TrainingServices() {
-  const servicesByIcon = Object.fromEntries(TRAINING_SERVICES.map((s) => [s.icon, s]))
+export default function TrainingServices({ embedded = false }) {
+  const [activeTab, setActiveTab] = useState(0)
+
+  const sectionClass = embedded
+    ? 'bg-white border-b border-slate-100 py-10 sm:py-10'
+    : 'relative overflow-hidden bg-slate-50/50 py-16 sm:py-20 border-b border-slate-100'
+
+  const servicesList = embedded ? TRAINING_SERVICES.slice(0, 6) : TRAINING_SERVICES
+  const activeService = servicesList[activeTab] || servicesList[0]
+  const ActiveIcon = SERVICE_ICONS[activeService.icon] || GraduationCap
 
   return (
-    <section id="training" className="relative overflow-hidden bg-gh-canvas pb-14">
-      <div className="pointer-events-none absolute top-0 right-0 h-72 w-72 rounded-full bg-[#00a86b]/5 blur-3xl lg:blur-[72px]" />
-
+    <section id="training" className={sectionClass}>
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="section-tag">
-            <Sparkles className="h-3.5 w-3.5" />
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f1f8f4] border border-[#00a86b]/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1b4332] mb-4">
+            <Sparkles className="h-3.5 w-3.5 text-[#00a86b]" />
             Training Services
           </span>
-          <h2 className="section-title">
-            Everything you need to go <span className="highlight">job-ready</span>
+          <h2 className="font-rubik text-3xl font-extrabold text-[#1b4332] sm:text-4xl">
+            Everything You Need To Go <span className="highlight">Job-Ready</span>
           </h2>
-          <p className="mx-auto max-w-lg text-sm text-gh-muted">
-            Classroom training, live projects, and placement support — all at our KPHB campus in Hyderabad.
+          <p className="mt-4 text-base sm:text-lg text-slate-600 font-medium">
+            Explore our ecosystem designed to take you from absolute coding fundamentals to joining top software organizations.
           </p>
         </div>
 
-        {/* Hero banner */}
-        {/* <div className="relative mt-10 overflow-hidden rounded-2xl border border-slate-200 shadow-[0_4px_24px_rgb(15_23_42/0.06)]">
-          <img
-            src={TRAINING_HERO_IMAGE.src}
-            alt={TRAINING_HERO_IMAGE.alt}
-            className="aspect-[21/9] min-h-[180px] w-full object-cover sm:min-h-[220px]"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1b4332]/90 via-[#1b4332]/70 to-[#1b4332]/30" />
-          <div className="absolute inset-0 flex flex-col justify-center px-6 py-8 sm:px-10">
-            <p className="max-w-md text-sm leading-relaxed text-white/85">
-              Mentor-led batches, portfolio-ready labs, and interview prep — designed for freshers and
-              working professionals.
-            </p>
-            <div className="mt-5 flex flex-wrap items-center gap-4">
+        {/* Unified Tabbed Showcase Card */}
+        <div className="max-w-6xl mx-auto bg-white border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden grid md:grid-cols-[280px_1fr] items-stretch">
+
+          {/* Left Side: Vertical Tabs Navigation */}
+          <div className="border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/60 p-4 flex flex-col gap-2">
+            <span className="hidden md:inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 px-2.5 mb-2">
+              Select Services
+            </span>
+            <div className="flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible no-scrollbar pb-1 md:pb-0">
+              <style>{`
+                .no-scrollbar::-webkit-scrollbar {
+                  display: none;
+                }
+              `}</style>
+              {servicesList.map((service, index) => {
+                const Icon = SERVICE_ICONS[service.icon] || GraduationCap
+                const isActive = index === activeTab
+
+                return (
+                  <button
+                    key={service.title}
+                    type="button"
+                    onClick={() => setActiveTab(index)}
+                    className={`relative overflow-hidden flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl border text-xs sm:text-sm font-extrabold whitespace-nowrap md:whitespace-normal transition-all duration-200 cursor-pointer shrink-0 ${isActive
+                      ? 'border-[#00a86b]/20 bg-[#f1f8f4]/80 text-[#1b4332]'
+                      : 'border-transparent text-slate-600 hover:bg-white/60 hover:text-slate-900'
+                      }`}
+                  >
+                    {/* Visual active tab indicator strip */}
+                    {isActive && (
+                      <>
+                        <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#00a86b] rounded-r-md hidden md:block" />
+                        <span className="absolute bottom-0 left-0 right-0 h-1 bg-[#00a86b] rounded-t-md md:hidden" />
+                      </>
+                    )}
+                    <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-colors ${isActive ? 'border-[#00a86b]/20 bg-[#00a86b] text-white shadow-sm' : 'border-slate-200 bg-white text-slate-400'
+                      }`}>
+                      <Icon className="h-4.5 w-4.5" strokeWidth={2} />
+                    </span>
+                    <span className="truncate">{service.title}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Right Side: Content Preview Area */}
+          <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+            <div className="grid gap-6 md:grid-cols-[1.1fr_1.9fr] items-center">
+              {/* Service image preview */}
+              <div className="relative aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden shadow-inner bg-slate-50">
+                <img
+                  key={activeService.image}
+                  src={activeService.image}
+                  alt={activeService.imageAlt || activeService.title}
+                  className="h-full w-full object-cover animate-fade-in"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b4332]/40 via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 border border-white/20 text-white backdrop-blur-md">
+                  <ActiveIcon className="h-3.5 w-3.5" strokeWidth={2} />
+                </span>
+              </div>
+
+              {/* Service details */}
+              <div className="text-left flex flex-col justify-between h-full py-1">
+                <div>
+                  <span className="inline-block rounded-md bg-[#f1f8f4] px-2.5 py-0.5 text-xs font-black uppercase tracking-wider text-[#2d6a4f] border border-[#00a86b]/15">
+                    {activeService.tag}
+                  </span>
+                  <h3 className="mt-2 font-rubik text-xl sm:text-2xl font-black text-[#1b4332] leading-tight">
+                    {activeService.title}
+                  </h3>
+                  <p className="mt-2 text-sm sm:text-base text-slate-500 font-medium leading-relaxed">
+                    {activeService.desc}
+                  </p>
+                </div>
+
+                {/* Highlights Paragraph */}
+                <div className="mt-4 border-t border-slate-100 pt-3">
+                  <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
+                    {(SERVICE_HIGHLIGHTS[activeService.icon] || []).join('. ') + '.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Panel CTA action */}
+            <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+              <span className="text-xs font-semibold text-slate-400">Want to know more about this training?</span>
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-hero inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold"
+                className="btn-primary inline-flex items-center gap-2 px-2 py-1 text-xs font-bold"
               >
-                Talk to admissions
+                Inquire Details
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <span className="text-xs font-medium text-white/70">
-                Next batch starts <span className="font-semibold text-white">20th June</span>
-              </span>
             </div>
           </div>
-        </div> */}
-
-        {/* Grouped services */}
-        <div className="mt-12 grid gap-8 lg:grid-cols-3">
-          {SERVICE_GROUPS.map((group) => (
-            <div
-              key={group.label}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_1px_2px_rgb(15_23_42/0.04)]"
-            >
-              <div className="mb-4 border-b border-slate-100 pb-4">
-                <h3 className="font-rubik text-lg font-bold text-slate-800">
-                  <span className="highlight">{group.label}</span>
-                </h3>
-                <p className="mt-1 text-xs text-slate-500">{group.desc}</p>
-              </div>
-              <div className="space-y-1">
-                {group.icons.map((iconKey) => {
-                  const service = servicesByIcon[iconKey]
-                  if (!service) return null
-                  return <ServiceRow key={service.title} service={service} />
-                })}
-              </div>
-            </div>
-          ))}
         </div>
 
-        {/* Footer CTA */}
-        {/* <div className="relative mt-12 overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-8 text-center shadow-[0_1px_2px_rgb(15_23_42/0.04)] sm:px-10 sm:py-10">
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#1b4332] via-[#00a86b] to-[#52b788]"
-            aria-hidden
-          />
-          <h3 className="font-rubik text-xl font-bold text-slate-800 sm:text-2xl">
-            Book a free <span className="highlight">counselling session</span>
+        {/* Global counselling banner */}
+        {/* <div className="mt-16 rounded-3xl border border-[#00a86b]/20 bg-[#f1f8f4]/60 p-8 text-center sm:p-10 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 -z-10 h-32 w-32 rounded-full bg-[#00a86b]/5 blur-2xl" />
+          <h3 className="font-rubik text-2xl font-extrabold text-[#1b4332] sm:text-3xl">
+            Book a Free <span className="highlight">Counselling Session</span>
           </h3>
-          <p className="mx-auto mt-2 max-w-md text-sm text-slate-500">
+          <p className="mx-auto mt-3 max-w-xl text-sm text-slate-500 font-medium leading-relaxed">
             Tell us your background and goal — we&apos;ll suggest the right batch and learning track.
           </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+
+          <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href={WHATSAPP}
               target="_blank"
               rel="noreferrer"
-              className="btn-hero inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold"
+              className="btn-primary inline-flex items-center gap-2 px-8 py-3 text-sm font-bold shadow-lg shadow-[#00a86b]/20"
             >
               Chat on WhatsApp
               <ArrowRight className="h-4 w-4" />
             </a>
-            <AppLink
-              to={ROUTES.placements}
-              className="btn-hero-outline inline-flex items-center gap-2 px-7 py-2.5 text-sm font-semibold"
-            >
-              View placement records
-              <ArrowRight className="h-4 w-4" />
-            </AppLink>
+            {!embedded && (
+              <AppLink
+                to={ROUTES.placements}
+                className="btn-hero-outline inline-flex items-center gap-2 px-8 py-3 text-sm font-bold border-slate-300 hover:border-[#00a86b] text-slate-700 hover:text-[#1b4332]"
+              >
+                View placement records
+                <ArrowRight className="h-4 w-4" />
+              </AppLink>
+            )}
+            {embedded && (
+              <AppLink
+                to={ROUTES.training}
+                className="btn-hero-outline inline-flex items-center gap-2 px-8 py-3 text-sm font-bold border-slate-300 hover:border-[#00a86b] text-slate-700 hover:text-[#1b4332]"
+              >
+                All training services
+                <ArrowRight className="h-4 w-4" />
+              </AppLink>
+            )}
           </div>
         </div> */}
       </div>
