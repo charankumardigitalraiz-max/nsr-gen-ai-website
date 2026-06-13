@@ -105,7 +105,19 @@ export default function Navbar() {
           />
           <aside className={drawerClass}>
             <div className="nav-drawer-head">
-              <p className="nav-drawer-label">Menu</p>
+              <AppLink
+                to={ROUTES.home}
+                className="nav-brand nav-drawer-brand group"
+                onClick={() => setMenuOpen(false)}
+              >
+                <NavLogo className="h-9 w-9 shrink-0 transition duration-300 group-hover:scale-105" />
+                <span className="nav-brand-text">
+                  <span className="nav-brand-nsr">NSR</span>
+                  <span className="nav-brand-name">
+                    GenAI <span className="nav-brand-accent">ProSkills</span>
+                  </span>
+                </span>
+              </AppLink>
               <button
                 type="button"
                 className="nav-drawer-close"

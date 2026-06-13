@@ -75,8 +75,8 @@ export default function TrainingServices({ embedded = false }) {
   const [activeTab, setActiveTab] = useState(0)
 
   const sectionClass = embedded
-    ? 'bg-white border-b border-slate-100 py-10 sm:py-10'
-    : 'relative overflow-hidden bg-slate-50/50 py-16 sm:py-20 border-b border-slate-100'
+    ? 'overflow-x-hidden bg-white border-b border-slate-100 py-8 sm:py-10'
+    : 'relative overflow-hidden overflow-x-hidden bg-slate-50/50 py-12 sm:py-16 md:py-20 border-b border-slate-100'
 
   const servicesList = embedded ? TRAINING_SERVICES.slice(0, 6) : TRAINING_SERVICES
   const activeService = servicesList[activeTab] || servicesList[0]
@@ -84,35 +84,30 @@ export default function TrainingServices({ embedded = false }) {
 
   return (
     <section id="training" className={sectionClass}>
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f1f8f4] border border-[#00a86b]/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1b4332] mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f1f8f4] border border-[#00a86b]/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#1b4332] sm:px-4 sm:text-xs mb-3 sm:mb-4">
             <Sparkles className="h-3.5 w-3.5 text-[#00a86b]" />
             Training Services
           </span>
-          <h2 className="font-rubik text-3xl font-extrabold text-[#1b4332] sm:text-4xl">
+          <h2 className="font-rubik text-2xl font-extrabold text-[#1b4332] sm:text-3xl md:text-4xl">
             Everything You Need To Go <span className="highlight">Job-Ready</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 font-medium">
+          <p className="mt-3 text-sm sm:text-base md:text-lg text-slate-600 font-medium sm:mt-4">
             Explore our ecosystem designed to take you from absolute coding fundamentals to joining top software organizations.
           </p>
         </div>
 
         {/* Unified Tabbed Showcase Card */}
-        <div className="max-w-6xl mx-auto bg-white border border-slate-200/80 rounded-3xl shadow-sm overflow-hidden grid md:grid-cols-[280px_1fr] items-stretch">
+        <div className="max-w-6xl mx-auto min-w-0 bg-white border border-slate-200/80 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden grid md:grid-cols-[260px_1fr] lg:grid-cols-[280px_1fr] items-stretch">
 
-          {/* Left Side: Vertical Tabs Navigation */}
-          <div className="border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/60 p-4 flex flex-col gap-2">
-            <span className="hidden md:inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 px-2.5 mb-2">
+          {/* Left Side: Tabs Navigation */}
+          <div className="border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/60 p-3 sm:p-4">
+            <span className="inline-block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1 mb-2 sm:px-2.5 md:mb-2">
               Select Services
             </span>
-            <div className="flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible no-scrollbar pb-1 md:pb-0">
-              <style>{`
-                .no-scrollbar::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
+            <div className="grid grid-cols-2 gap-2 md:flex md:flex-col md:gap-1">
               {servicesList.map((service, index) => {
                 const Icon = SERVICE_ICONS[service.icon] || GraduationCap
                 const isActive = index === activeTab
@@ -122,23 +117,20 @@ export default function TrainingServices({ embedded = false }) {
                     key={service.title}
                     type="button"
                     onClick={() => setActiveTab(index)}
-                    className={`relative overflow-hidden flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl border text-xs sm:text-sm font-extrabold whitespace-nowrap md:whitespace-normal transition-all duration-200 cursor-pointer shrink-0 ${isActive
-                      ? 'border-[#00a86b]/20 bg-[#f1f8f4]/80 text-[#1b4332]'
-                      : 'border-transparent text-slate-600 hover:bg-white/60 hover:text-slate-900'
-                      }`}
+                    className={`training-service-tab ${
+                      isActive ? 'training-service-tab--active' : 'training-service-tab--idle'
+                    }`}
                   >
-                    {/* Visual active tab indicator strip */}
                     {isActive && (
                       <>
                         <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#00a86b] rounded-r-md hidden md:block" />
                         <span className="absolute bottom-0 left-0 right-0 h-1 bg-[#00a86b] rounded-t-md md:hidden" />
                       </>
                     )}
-                    <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-colors ${isActive ? 'border-[#00a86b]/20 bg-[#00a86b] text-white shadow-sm' : 'border-slate-200 bg-white text-slate-400'
-                      }`}>
-                      <Icon className="h-4.5 w-4.5" strokeWidth={2} />
+                    <span className={`training-service-tab__icon ${isActive ? 'training-service-tab__icon--active' : ''}`}>
+                      <Icon className="h-4 w-4" strokeWidth={2} />
                     </span>
-                    <span className="truncate">{service.title}</span>
+                    <span className="training-service-tab__label">{service.title}</span>
                   </button>
                 )
               })}
@@ -146,10 +138,10 @@ export default function TrainingServices({ embedded = false }) {
           </div>
 
           {/* Right Side: Content Preview Area */}
-          <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between">
-            <div className="grid gap-6 md:grid-cols-[1.1fr_1.9fr] items-center">
+          <div className="min-w-0 p-4 sm:p-6 md:p-8 flex flex-col justify-between">
+            <div className="grid gap-5 sm:gap-6 md:grid-cols-[1.1fr_1.9fr] md:items-center min-w-0">
               {/* Service image preview */}
-              <div className="relative aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden shadow-inner bg-slate-50">
+              <div className="relative aspect-[16/10] sm:aspect-[5/3] md:aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-inner bg-slate-50">
                 <img
                   key={activeService.image}
                   src={activeService.image}
@@ -164,39 +156,43 @@ export default function TrainingServices({ embedded = false }) {
               </div>
 
               {/* Service details */}
-              <div className="text-left flex flex-col justify-between h-full py-1">
+              <div className="min-w-0 text-left flex flex-col justify-between h-full py-1">
                 <div>
-                  <span className="inline-block rounded-md bg-[#f1f8f4] px-2.5 py-0.5 text-xs font-black uppercase tracking-wider text-[#2d6a4f] border border-[#00a86b]/15">
+                  <span className="inline-block rounded-md bg-[#f1f8f4] px-2 py-0.5 text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#2d6a4f] border border-[#00a86b]/15">
                     {activeService.tag}
                   </span>
-                  <h3 className="mt-2 font-rubik text-xl sm:text-2xl font-black text-[#1b4332] leading-tight">
+                  <h3 className="mt-2 font-rubik text-lg sm:text-xl md:text-2xl font-black text-[#1b4332] leading-tight">
                     {activeService.title}
                   </h3>
-                  <p className="mt-2 text-sm sm:text-base text-slate-500 font-medium leading-relaxed">
+                  <p className="mt-2 text-sm text-slate-500 font-medium leading-relaxed sm:text-base">
                     {activeService.desc}
                   </p>
                 </div>
 
-                {/* Highlights Paragraph */}
-                <div className="mt-4 border-t border-slate-100 pt-3">
-                  <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-                    {(SERVICE_HIGHLIGHTS[activeService.icon] || []).join('. ') + '.'}
-                  </p>
-                </div>
+                <ul className="mt-4 space-y-2 border-t border-slate-100 pt-3 sm:space-y-2.5 sm:pt-4">
+                  {(SERVICE_HIGHLIGHTS[activeService.icon] || []).map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-slate-600 font-medium leading-relaxed">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#00a86b]" strokeWidth={2.25} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
             {/* Panel CTA action */}
-            <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
-              <span className="text-xs font-semibold text-slate-400">Want to know more about this training?</span>
+            <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-100 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-xs font-semibold text-slate-400 text-center sm:text-left">
+                Want to know more about this training?
+              </span>
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-primary inline-flex items-center gap-2 px-2 py-1 text-xs font-bold"
+                className="btn-primary training-service-cta"
               >
                 Inquire Details
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 shrink-0" />
               </a>
             </div>
           </div>

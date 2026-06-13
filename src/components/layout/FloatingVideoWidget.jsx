@@ -2,11 +2,29 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, GripVertical, Play, Video, X } from 'lucide-react'
 import { FLOATING_PROMO_VIDEOS } from '../../constants/content'
 
+const DESKTOP_MEDIA_QUERY = '(min-width: 1024px)'
+
 const DEFAULT_SIZE = { width: 200, height: 360 }
 const NAV_OFFSET = 88
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
+}
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(DESKTOP_MEDIA_QUERY).matches,
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia(DESKTOP_MEDIA_QUERY)
+    const onChange = (event) => setIsDesktop(event.matches)
+    onChange(media)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
+
+  return isDesktop
 }
 
 function getDefaultPosition() {
@@ -21,6 +39,7 @@ function getDefaultPosition() {
 }
 
 export default function FloatingVideoWidget() {
+  const isDesktop = useIsDesktop()
   const videos = FLOATING_PROMO_VIDEOS
   const [expanded, setExpanded] = useState(true)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -137,7 +156,7 @@ export default function FloatingVideoWidget() {
     return () => window.removeEventListener('resize', onResize)
   }, [clampPosition, expanded])
 
-  if (!active) return null
+  if (!active || !isDesktop) return null
 
   const widgetStyle = expanded
     ? { left: `${position.x}px`, top: `${position.y}px` }

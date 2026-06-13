@@ -35,7 +35,7 @@ export default function HomePage() {
       {/* <FoundersSection /> */}
       {/* <VideoTestimonials /> */}
       <HomeFaqSection />
-      <HomeCtaBand />
+      <HomeCtaBand />    
     </div>
   )
 }

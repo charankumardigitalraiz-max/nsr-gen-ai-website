@@ -211,7 +211,7 @@ export default function CourseDetail() {
               <button
                 type="button"
                 onClick={() => setEnrollOpen(true)}
-                className="btn-hero flex min-h-11 items-center justify-center gap-2 px-3 text-center text-sm"
+                className="btn-hero flex min-h-11 items-center justify-center gap-2 px-2.5 sm:px-0 text-center text-sm"
               >
                 Enroll Now <ArrowRight className="h-4 w-4 shrink-0" />
               </button>
